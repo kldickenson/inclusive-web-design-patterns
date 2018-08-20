@@ -1,15 +1,23 @@
 /*! v. 1.0 | MIT License  */
 
-
+/* declaring CSS variables */
 html {
-  /* Use the font-size set by the user in their browser settings */
-	font-size: 100%; 
-
+  --mySystemFont: serif;
+  --myWebFont: 'Google Font';
+  --lineHeight: 1.5rem;
 }
 
+html {
+  font-size: 100%; /*fall back for calc not working*/
+  font-size: calc(1em + 1vw);
+  font-family: var(--mySystemFont, serif);
+}
 
 body {
-  font-family: "gotham", sans-serif;
+}
+
+body * {
+  box-sizing: border-box;
 }
 
 h1,
@@ -21,9 +29,6 @@ h6,
 p {
   color: #222; /* for lower, less visually-harsh contrast, preferred to pure black*/
 }
-
-
-
 
 
 a {
@@ -44,18 +49,15 @@ nav ul {
 
 
 nav li {
-  margin-right: 20px;
+  margin-right: 2rem;
   list-style-type: none;
   display: inline
 }
 
 
-
-
 h1,
 h2,
 p {
-  font-family:  Helvetica, Arial, sans-serif;
   color: #2f2f2f;
 
 }
@@ -67,7 +69,15 @@ p {
   width: 100%;
   padding: 0.5em;
 }
-
+/* hiding the skip to content link */
+[href="#main"] {
+  position: absolute;
+  top: 0;
+  right: 100%;
+}
+[href="#main"]:focus {
+  right: auto;
+}
 
 
 /***
@@ -86,8 +96,14 @@ main {
 
 p {
   font-size: 1rem;/* 100% of root font-size*/
-  line-height: 1.5; /* 1.5x of root font-size*/
+  line-height: var(--lineHeight); /* 1.5x of root font-size*/
 	text-align: left; /* left aligment is far more legible*/
+}
+/* Changing to smaller font on mobile */
+@media (max-width: 60rem) {
+  html {
+    font-size: 80%
+  }
 }
 
 /***
@@ -128,7 +144,7 @@ Inline Links Focus pattern:
 
 <a> tags are focusable by default, but the following styles ensure a consistent look and a better across browsers. It's also better looking, really.
 
-Note: depending on the background color of the page, or element containing the link, the color parameter of the text-shadow will need to be changed to ensure visibility and congruence with branding. 	
+Note: depending on the background color of the page, or element containing the link, the color parameter of the text-shadow will need to be changed to ensure visibility and congruence with branding.
 ***/
 
 p a:focus, a:focus {
@@ -138,13 +154,38 @@ p a:focus, a:focus {
 }
 
 
+/***
+External Links:
+
+adds external-link.svg to <a> tags that go to external sources
+
+Note: depending on the background color of the page, you may have to change the color of the svg.
+***/
+html {
+  --root: 'rooturl.com';
+}
+[href^="http]":not([href*="var(--root)"])::after {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url(/images/svg/external-link.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75% auto;
+  /* alternative text rules */
+  content: '(external link)';
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 1em; /* the width of the icon */
+}
+
 
 
 /***
 
 Visually Hidden Helper class:
 
-The .visually-hidden class invokes a special set of properties, carefully devised to hide the element visually without it becoming silenced in screen reader software 	
+The .visually-hidden class invokes a special set of properties, carefully devised to hide the element visually without it becoming silenced in screen reader software
 ***/
 
 .visually-hidden {
@@ -169,7 +210,7 @@ TODO: When porting to Sass, use dynamic formula to increase margin top by 2
 ***/
 
 main * + * {
-	margin-top: 2rem;
+	margin-top: var(--lineHeight);
 }
 
 
@@ -183,26 +224,31 @@ li, dt, dd, br, th, td {
 * + h4,
 * + h5,
 * + h6 {
-	margin-top: 1.5em;
+	margin-top: var(--lineHeight);
 }
 
+.container {
+  padding: var(--lineHeight);
+}
+.container p {
+  margin-top: var(--lineHeight);
+}
 
 /*
 To separate supplementary content such as blockquotes, videos,
 and illustrations from the paragraph text, you can apply a
 greater margin for anything that isn’t a <p>:
 */
-
 main * + *:not(p) {
-	margin: 3rem 0; /* these values can be adjusted, of course */
+	margin: calc(var(--lineHeight) * 2) 0; /* these values can be adjusted, of course */
 }
 
 
 
-/* 
+/*
 Defensive coding pattern: when the WYSIWYG editor enters unwanted <p> or empty tags we can remove the styling from this unwanted, empty markup:
 */
-
 main :empty {
 	display: none;
 }
+

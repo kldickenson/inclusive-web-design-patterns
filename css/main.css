@@ -39,9 +39,3 @@ main {
   right: auto;
 }
 
-/* hidding non-main content when printed */
-@media print {
-  body > *:not(main) {
-    display: none;
-  }
-}
