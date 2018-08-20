@@ -1,0 +1,10 @@
+/* replace "myWebFont" with the Google Font and "MySystemSerif" with a system font with similar width" */
+/* declaring CSS variables */
+html {
+  --mySystemFont: serif;
+  --myWebFont: 'Google Font';
+}
+
+html.fonts-loaded {
+  font-family: var(--myWebFont), var(--mySystemSerif), serif;
+}

@@ -1,0 +1,47 @@
+/* declaring CSS variables */
+html {
+  --mySystemFont: serif;
+  --myWebFont: 'Google Font';
+}
+
+html {
+  font-size: 100%; /*fall back for calc not working*/
+  font-size: calc(1em + 1vw);
+  font-family: var(--mySystemFont, serif);
+}
+p {
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+@media (max-width: 60rem) {
+  html {
+    font-size: 80%
+  }
+}
+main {
+  max-width: 60rem;
+}
+@media (min-width: 120rem) {
+  html {
+    font-size: 150%;
+  }
+}
+
+
+/* hiding the skip to content link */
+[href="#main"] {
+  position: absolute;
+  top: 0;
+  right: 100%;
+}
+[href="#main"]:focus {
+  right: auto;
+}
+
+/* hidding non-main content when printed */
+@media print {
+  body > *:not(main) {
+    display: none;
+  }
+}
