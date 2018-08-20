@@ -1,6 +1,6 @@
 # Inclusive Web Design Pattern Library
 
-This repository presents a set of open-sourced HTML templates and components that have been desigen with inclusivness and accessibility in mind. 
+This repository presents a set of open-sourced HTML templates and components that have been desigen with inclusivness and accessibility in mind.
 
 The patterns have been largely based and inpired by the amazing work done by designer and developer Heydon Pickering in his book *Inclusive Design Patterns: Coding Accessibility into Web Design*. This book is a must read for the modern web designer. [Buy his book here](https://www.smashingmagazine.com/inclusive-design-patterns/)
 
@@ -10,8 +10,13 @@ Each template and component was developed using semantic HTML and minimally styl
 
 
 ### Blog Post (blog-post.html)
-This lean, semantic template focuses on hierarchy, source order, and structure to ensure the post is useful to screen readers. 
+This lean, semantic template focuses on hierarchy, source order, and structure to ensure the post is useful to screen readers.
 
 * A log-in form
 * More to come!
+
+### HTML5 template (similar to Blog Post)
+
+### css/fonts.css
+When using web-based fonts
 
